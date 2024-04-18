@@ -24,7 +24,9 @@ Python3 версия https://github.com/yegorov-p/python-zapret-info
 Описание текущего API http://vigruzki.rkn.gov.ru/docs/description_for_operators_actual.pdf
 
 ## Запуск
-python3 zapret_checker.py 
+```
+python3 ./zapret_checker.py
+```
 ### Ключи
 **-r, --request** файл, содержащий данные об операторе  
 **-s, --signature** файл, содержащий отсоединенную электронную подпись в формате PKCS#7 (PEM или DER)  
@@ -32,9 +34,6 @@ python3 zapret_checker.py
 **-t, --time** возвращает unixtime последнего обновления реестра    
 **-d, --dir** папка, в которой хранятся активные дампы (по умолчанию *./dumps*)   
 **-n, --no_archives** не сохранять архивные дампы   
-
-### crontab -e
-*/10 * * * * /путь_к_папке_со_скриптом && python3 zapret_checker.py -r req.xml -s req.der
 
 ### При обновлении 10 марта
 При переходе на версию реестра 2.1 10 марта, либо если Вы получаете ошибку вида 
