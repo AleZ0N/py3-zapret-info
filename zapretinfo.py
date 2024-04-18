@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__version__ = "0.0.9"
-__author__ = "yegorov.p@gmail.com"
+__version__ = "0.0.1"
 
-import suds
+from suds import client, sax
 from base64 import b64encode
 import os
 
@@ -17,7 +16,7 @@ class ZapretInfoException(RuntimeError):
 
 class ZapretInfo(object):
     def __init__(self):
-        self.cl = suds.client.Client(API_URL)
+        self.cl = client.Client(API_URL)
 
     def getLastDumpDateEx(self):
         '''
@@ -52,28 +51,29 @@ class ZapretInfo(object):
         with open(signatureFile, "rb") as f:
             data = f.readlines()
 
-        if '-----' in data[0]:
+        if b'-----' in data[0]:
             sert = ''.join(data[1:-1])
         else:
-            sert = ''.join(data)
+            sert = b''.join(data)
 
         sert = b64encode(sert)
-        result = self.cl.service.sendRequest(xml, sert, versionNum)
-
-        return dict(((k, v.encode('utf-8')) if isinstance(v, suds.sax.text.Text) else (k, v)) for (k, v) in result)
+        
+        result = self.cl.service.sendRequest(xml.decode('utf-8'), sert.decode('utf-8'), versionNum)
+        
+        return dict(((k, v.encode('utf-8')) if isinstance(v, sax.text.Text) else (k, v)) for (k, v) in result)
 
     def getResult(self, code):
         '''
         Метод предназначен для получения результата обработки запроса - выгрузки из реестра
         '''
-        result = self.cl.service.getResult(code)
+        result = self.cl.service.getResult(code.decode('utf-8'))
 
-        return dict(((k, v.encode('utf-8')) if isinstance(v, suds.sax.text.Text) else (k, v)) for (k, v) in result)
+        return dict(((k, v.encode('utf-8')) if isinstance(v, sax.text.Text) else (k, v)) for (k, v) in result)
     
     def getResultSocResources(self, code):
         '''
         Метод предназначен для получения результата обработки запроса - выгрузки из реестра
         '''
-        result = self.cl.service.getResultSocResources(code)
+        result = self.cl.service.getResultSocResources(code.decode('utf-8'))
 
-        return dict(((k, v.encode('utf-8')) if isinstance(v, suds.sax.text.Text) else (k, v)) for (k, v) in result)
+        return dict(((k, v.encode('utf-8')) if isinstance(v, sax.text.Text) else (k, v)) for (k, v) in result)
