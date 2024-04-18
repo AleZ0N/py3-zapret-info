@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# yegorov.p@gmail.com
 
 from xml.etree.ElementTree import ElementTree
 from datetime import datetime
@@ -54,7 +53,7 @@ def main():
     if args.time:
         last_dump = session.getLastDumpDateEx()
         last_dump_date = max(last_dump.lastDumpDate, last_dump.lastDumpDateUrgently) / 1000
-        print last_dump_date
+        print(last_dump_date)
     else:
         logging.basicConfig(filename=LOG_FILE_NAME, filemode='a',
                             format=u'%(asctime)s  %(message)s', level=logging.INFO)
@@ -63,13 +62,13 @@ def main():
 
         if not XML_FILE_NAME:
             logging.error('No XML file.')
-            print 'No XML file.'
+            print('No XML file.')
             parser.usage()
             return
 
         if not P7S_FILE_NAME:
             logging.error('No signature file.')
-            print 'No signature file.'
+            print('No signature file.')
             parser.usage()
             return
 
@@ -143,7 +142,7 @@ def main():
                             zip_file.close()
                         except zipfile.BadZipfile:
                             logger.error('Wrong file format.')
-                        
+
                     requestSocResources = session.getResultSocResources(code)
                     if requestSocResources['result']:
                         logger.info('Got a SocResources dump ver. %s ',
