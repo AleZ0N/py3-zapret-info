@@ -1,9 +1,9 @@
 python-zapret-info
 ==================
 
-[![Code Health](https://landscape.io/github/yegorov-p/python-zapret-info/master/landscape.svg?style=flat)](https://landscape.io/github/yegorov-p/python-zapret-info/master)
-
 Python class for http://vigruzki.rkn.gov.ru/ API
+
+Python3 версия https://github.com/yegorov-p/python-zapret-info
 
 Для работы требуется сгенерировать XML вида
 
