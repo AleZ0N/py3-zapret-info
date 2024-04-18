@@ -23,9 +23,9 @@ Python3 версия https://github.com/yegorov-p/python-zapret-info
 
 Описание текущего API http://vigruzki.rkn.gov.ru/docs/description_for_operators_actual.pdf
 
-##Запуск##
+## Запуск
 python zapret_checker.py 
-###Ключи###
+### Ключи
 **-r, --request** файл, содержащий данные об операторе  
 **-s, --signature** файл, содержащий отсоединенную электронную подпись в формате PKCS#7 (PEM или DER)  
 **-l, --log** файл, в который будет записываться лог (по умолчанию *rkn_dump.log*)
@@ -33,10 +33,10 @@ python zapret_checker.py
 **-d, --dir** папка, в которой хранятся активные дампы (по умолчанию *./dumps*)
 **-n, --no_archives** не сохранять архивные дампы
 
-###crontab -e###
+### crontab -e
 */10 * * * * /путь_к_папке_со_скриптом && python zapret_checker.py -r req.xml -s req.der
 
-###При обновлении 10 марта###
+### При обновлении 10 марта
 При переходе на версию реестра 2.1 10 марта, либо если Вы получаете ошибку вида 
 
     Exception: '<operatorName/>' not mapped to message part
